@@ -17,16 +17,7 @@ export default class Modal extends Component {
     window.removeEventListener('keydown', this.handleModal);
   }
 
-  // handleKeyDown = event => {
-  //   if (event.code === 'Escape') {
-  //     //   console.log('escape pushed');
-  //     this.props.onClose();
-  //   }
-  // };
-
   handleModal = event => {
-    // console.log('currentTarget', event.currentTarget);
-    // console.log('target', event.target);
     if (event.currentTarget === event.target || event.code === 'Escape') {
       this.props.onClick();
     }
