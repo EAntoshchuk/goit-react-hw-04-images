@@ -5,26 +5,15 @@ import css from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal_root');
 
-export default function Modal() {
+export default function Modal({ onClick }) {
   useEffect(() => {
     window.addEventListener('keydown', handleModal);
     window.removeEventListener('keydown', handleModal);
   });
 
-  // const componentDidMount = e => {
-  //   console.log('modal componenDidMount');
-  //   window.addEventListener('keydown', this.handleModal);
-  // };
-
-  // const componentWillUnmount = e => {
-  //   console.log('modal componentWillUnmount');
-
-  //   window.removeEventListener('keydown', this.handleModal);
-  // };
-
   const handleModal = event => {
     if (event.currentTarget === event.target || event.code === 'Escape') {
-      this.props.onClick();
+      onClick();
     }
   };
 
