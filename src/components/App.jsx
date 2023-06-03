@@ -27,7 +27,9 @@ function App() {
         if (res.total === 0) {
           return toast.warn(`There is no images with ${request}`);
         }
-        setHits([...hits, ...res.hits]);
+        return setHits(prevHits => {
+          return [...prevHits, ...res.hits];
+        });
       })
       .catch(err => toast.warn(err))
       .finally(() => setIsImageLoaded(false));
@@ -54,7 +56,7 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    setPage(prevState => prevState + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
