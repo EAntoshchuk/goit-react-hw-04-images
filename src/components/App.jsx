@@ -16,6 +16,10 @@ function App() {
   const [largeImage, setLargeImage] = useState(null);
 
   useEffect(() => {
+    if (!request) {
+      return;
+    }
+
     setIsImageLoaded(true);
 
     fetchImages(request, page)
@@ -27,7 +31,7 @@ function App() {
       })
       .catch(err => toast.warn(err))
       .finally(() => setIsImageLoaded(false));
-  }, [hits, page, request]);
+  }, [page, request]);
 
   const openModal = ({ largeImageURL, tags }) => {
     setShowModal(true);
@@ -39,15 +43,14 @@ function App() {
     setLargeImage(null);
   };
 
-  const handleFormSubmit = request => {
-    if (request === request) {
+  const handleFormSubmit = newRequest => {
+    if (newRequest === request) {
       return toast.info(`You're alredy looking at ${request}`);
     }
 
-    setRequest();
+    setRequest(newRequest);
     setHits([]);
     setPage(1);
-    return;
   };
 
   const handleLoadMore = () => {
